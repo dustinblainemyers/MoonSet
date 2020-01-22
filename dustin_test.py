@@ -44,9 +44,25 @@ def show_menu_screen():
             # Any key press will start the game
             if event.type == pygame.KEYDOWN:
                 waiting = False
+def maingame():
+    screen.blit(main_background, main_background_rect2)
+    # draw_text(screen, "THIS IS THE MENU SCREEN", 64, WIDTH / 2, HEIGHT / 4)
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            # Any key press will start the game
+            if event.type == pygame.KEYDOWN:
+                waiting = False
 
 
 intro_background2 = pygame.image.load(path.join(img_dir2, 'menu.png')).convert()
 intro_background_rect2 = intro_background2.get_rect()
+main_background = pygame.image.load(path.join(img_dir2, 'maingame.png')).convert()
+main_background_rect2 = main_background.get_rect()
 
 show_menu_screen()
+maingame()
